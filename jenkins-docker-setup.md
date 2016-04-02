@@ -2,7 +2,7 @@ Setup jenkins server with docker
 ================================
 
 ##install docker
-refer the https://bitbucket.org/healthsource/healthsource/wiki/Ubuntu_Dev_Env_Setup
+refer the [Ubuntu Development Environment Setup](https://bitbucket.org/healthsource/healthsource/wiki/Ubuntu_Dev_Env_Setup)
 
 ##pull docker image
 ```
@@ -31,3 +31,21 @@ docker stop jenkins-ci
 docker exec -i -t jenkins-ci bash
 ``` 
 
+## Using systemd to start/stop container with Linux
+```
+cd /etc/init
+sudo nano jenkins-ci.conf
+```
+Put the following:
+```
+description "jenkin-ci daemon"
+
+start on filesystem and started docker
+stop on runlevel [!2345]
+
+respawn
+
+script
+        /usr/bin/docker start -a jenkins-ci
+end script
+```
