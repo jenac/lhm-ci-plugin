@@ -16,13 +16,18 @@ docker run -p 8080:8080 -p 5000:5000 -v /home/lihe/jenkins_data:/var/jenkins_hom
 ```
 Some tips:
 
-. To start docker container
+* To start docker container
 ```
 docker start jenkins-ci
 ```
 
-.To stop docker container
+* To stop docker container
 ```
 docker stop jenkins-ci
 ```
+
+* Attach to container with bash interactively
+```
+docker exec -i -t jenkins-ci bash
+``` 
 
