@@ -15,10 +15,14 @@ Prepare local volume /home/lihe/jenkins_data, then
 docker run -p 8080:8080 -p 5000:5000 -v /home/lihe/jenkins_data:/var/jenkins_home --name jenkins-ci -d jenkins
 ```
 Some tips:
-1. To start docker container
+
+1.  To start docker container
 ```
 docker start jenkins-ci
 ```
 
-2.
+2.  To stop docker container
+```
+docker stop jenkins-ci
+```
 
