@@ -1,15 +1,15 @@
 Setup jenkins server with docker
 ================================
 
-##install docker
+## Install docker
 refer the [Ubuntu Development Environment Setup](https://bitbucket.org/healthsource/healthsource/wiki/Ubuntu_Dev_Env_Setup)
 
-##pull docker image
+## Pull docker image
 ```
 docker pull jenkins
 ```
 
-##run jenkins docker container
+## Run jenkins docker container
 Prepare local volume /home/lihe/jenkins_data, then
 ```
 docker run -p 8080:8080 -p 5000:5000 -v /home/lihe/jenkins_data:/var/jenkins_home --name jenkins-ci -d jenkins
