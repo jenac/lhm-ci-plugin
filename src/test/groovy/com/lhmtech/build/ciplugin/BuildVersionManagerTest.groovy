@@ -6,15 +6,21 @@ import spock.lang.Specification
 /**
  * Created by lihe on 16-4-5.
  */
-@Ignore
 class BuildVersionManagerTest extends Specification {
-    def "IncreaseBuild"() {
+    def "build version manager increase build"() {
         given:
         BuildVersionManager buildVersionManager = new BuildVersionManager()
+        File file = new File(buildVersionManager.buildFile)
+        file.write "info.app.version=1.0.8"
+
         when:
+        String current = buildVersionManager.readBuild()
         buildVersionManager.increaseBuild()
+        String increased = buildVersionManager.readBuild()
+
         then:
-        true
+        current == '1.0.8'
+        increased == '1.0.9'
 
 
     }
