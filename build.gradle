@@ -1,0 +1,26 @@
+version '1.0.0'
+
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+ext { appName = 'ci-plugin'}
+group 'com.lhmtech.build'
+jar {
+    baseName = "$appName"
+    libsDirName = "libs/com/lhmtech/build/${appName}/${version}"
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile gradleApi()
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'org.ajoberstar:grgit:1.5.0'
+
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'cglib:cglib:3.2.1'
+
+}
