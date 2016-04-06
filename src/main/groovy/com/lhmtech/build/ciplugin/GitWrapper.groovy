@@ -24,6 +24,9 @@ class GitWrapper {
         repository.checkout(branch: branch)
     }
 
+    void push() {
+        repository.push()
+    }
 
 }
 
