@@ -12,8 +12,6 @@ class CiPlugin implements Plugin<Project> {
     void apply(Project project) {
         project.extensions.create 'buildVersionManager', BuildVersionManager
         project.tasks.create 'increaseBuild', IncreaseBuildTask
-        project.tasks.create 'gitCommitBuildFile', GitCommitBuildFileTask
-        project.tasks.create 'gitPush', GitPushTask
     }
 }
 
@@ -27,18 +25,3 @@ class IncreaseBuildTask extends  DefaultTask {
     }
 }
 
-class GitPushTask extends DefaultTask {
-    @TaskAction
-    void gitPush() {
-        GitWrapper gitWrapper = new GitWrapper()
-        gitWrapper.push()
-    }
-}
-
-class GitCommitBuildFileTask extends DefaultTask {
-    @TaskAction
-    void gitCommitBuildFile() {
-        GitWrapper gitWrapper = new GitWrapper()
-        gitWrapper.commit 'build: increase build number'
-    }
-}
