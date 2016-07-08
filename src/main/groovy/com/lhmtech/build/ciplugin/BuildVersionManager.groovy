@@ -6,6 +6,7 @@ package com.lhmtech.build.ciplugin
 class BuildVersionManager {
     String buildFile = 'src/main/resources/build.properties'
     File propertyFile = new File(buildFile)
+    Properties properties = new Properties()
 
     void increaseBuild() {
         def currentVersion = readBuild()
@@ -15,14 +16,12 @@ class BuildVersionManager {
         def increasedParts = parts.dropRight(1)
         increasedParts.add(newBuildNumber)
         String newVersion = increasedParts.join '.'
-        Properties properties = new Properties()
         properties.setProperty('info.app.version', newVersion)
         properties.store propertyFile.newWriter(), null
     }
 
     String readBuild() {
         def stream = propertyFile.newDataInputStream()
-        Properties properties = new Properties()
         properties.load(stream)
         String currentVersion = properties.getProperty('info.app.version')
     }
