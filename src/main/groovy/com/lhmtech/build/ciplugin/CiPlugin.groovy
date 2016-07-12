@@ -12,6 +12,7 @@ class CiPlugin implements Plugin<Project> {
     void apply(Project project) {
         project.extensions.create 'buildVersionManager', BuildVersionManager
         project.tasks.create 'increaseBuild', IncreaseBuildTask
+        project.tasks.create 'printbuild', PrintBuildTask
     }
 }
 
