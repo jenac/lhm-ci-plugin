@@ -25,3 +25,10 @@ class IncreaseBuildTask extends  DefaultTask {
     }
 }
 
+class PrintBuildTask extends DefaultTask {
+    @TaskAction
+    void printBuild() {
+        BuildVersionManager buildVersionManager = project.extensions.buildVersionManager
+        println buildVersionManager.readBuild()
+    }
+}
