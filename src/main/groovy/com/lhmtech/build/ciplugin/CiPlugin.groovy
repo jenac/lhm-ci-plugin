@@ -12,7 +12,7 @@ class CiPlugin implements Plugin<Project> {
     void apply(Project project) {
         project.extensions.create 'buildVersionManager', BuildVersionManager
         project.tasks.create 'increaseBuild', IncreaseBuildTask
-        project.tasks.create 'printbuild', PrintBuildTask
+        project.tasks.create 'deployBuild', DeployBuild
     }
 }
 
@@ -26,10 +26,14 @@ class IncreaseBuildTask extends  DefaultTask {
     }
 }
 
-class PrintBuildTask extends DefaultTask {
+class DeployBuild extends DefaultTask {
     @TaskAction
     void printBuild() {
-        BuildVersionManager buildVersionManager = project.extensions.buildVersionManager
-        println buildVersionManager.readBuild()
+        String deployUrl = project.properties.deployUrl
+        String token = project.properties.token
+        BuildVersionManager buildVersionManager = project.extensions.buildVersionManage
+        String version = buildVersionManager.readBuild()
+        String curlParams = "-X POST ${deployUrl} --data token=${token} --data-urlencode json='{\"parameter\": [{\"name\": \"VERSION\", \"value\": \"${version}\"}]}'"
+        ['curl', curlParams].execute()
     }
 }
