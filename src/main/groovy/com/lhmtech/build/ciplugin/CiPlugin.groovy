@@ -31,7 +31,7 @@ class DeployBuild extends DefaultTask {
     void printBuild() {
         String deployUrl = project.properties.deployUrl
         String token = project.properties.token
-        BuildVersionManager buildVersionManager = project.extensions.buildVersionManage
+        BuildVersionManager buildVersionManager = project.extensions.buildVersionManager
         String version = buildVersionManager.readBuild()
         String curlParams = "-X POST ${deployUrl} --data token=${token} --data-urlencode json='{\"parameter\": [{\"name\": \"VERSION\", \"value\": \"${version}\"}]}'"
         ['curl', curlParams].execute()
