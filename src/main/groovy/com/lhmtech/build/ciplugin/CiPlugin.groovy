@@ -33,9 +33,7 @@ class DeployBuild extends DefaultTask {
         String token = project.properties.token
         BuildVersionManager buildVersionManager = project.extensions.buildVersionManager
         String version = buildVersionManager.readBuild()
-        def response = ["curl", '-X', "POST", "${deployUrl}", "--data",
-         "token=${token}", "--data-urlencode",
-         "json='{\"parameter\": [{\"name\": \"VERSION\", \"value\": \"${version}\"}]}'"].execute()
-        println response
+        DeployManager deployManager =  new DeployManager()
+        deployManager.requestDeploy(deployUrl, token, version)
     }
 }
