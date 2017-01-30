@@ -4,10 +4,10 @@ apply plugin: 'groovy'
 apply plugin: 'idea'
 
 ext { appName = 'ci-plugin'}
-group 'com.lhmtech.build'
+group 'com.lhmtech.ci'
 jar {
     baseName = "$appName"
-    libsDirName = "libs/com/lhmtech/build/${appName}/${version}"
+    libsDirName = "libs/com/lhmtech/ci/${appName}/${version}"
 }
 
 

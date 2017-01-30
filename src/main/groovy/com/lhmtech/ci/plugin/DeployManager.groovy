@@ -1,4 +1,4 @@
-package com.lhmtech.build.ciplugin
+package com.lhmtech.ci.plugin
 
 /**
  * Created by lihe on 7/12/16.
