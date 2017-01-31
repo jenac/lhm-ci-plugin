@@ -1,0 +1,37 @@
+
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            groupId "$group"
+            artifactId "$appName"
+            version "$version"
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    configurations = ['archives']
+    pkg {
+        repo = 'lhmtech-bintray-repository'
+        name = "$appName"
+        userOrg = 'lhmtech'
+        licenses = ['AGPL-V3']
+        vcsUrl = 'https://github.com/lhmtech/lhmtech-ci-plugin.git'
+        //labels = ['gear', 'gore', 'gorilla']
+        publicDownloadNumbers = true
+        //attributes= ['a': ['ay1', 'ay2'], 'b': ['bee'], c: 'cee'] //Optional package-level attributes
+        version {
+            name = "$appName"
+            desc = 'ci plugin'
+            vcsTag = "$version"
+            attributes = ["$appName": "$group"]
+        }
+    }
+}
