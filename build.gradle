@@ -1,13 +1,22 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1+"
+    }
+}
+
 version '1.0.12'
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
 ext { appName = 'ci-plugin'}
-group 'com.lhmtech.build'
+group 'com.lhmtech.ci'
 jar {
     baseName = "$appName"
-    libsDirName = "libs/com/lhmtech/build/${appName}/${version}"
+    libsDirName = "libs/com/lhmtech/ci/${appName}/${version}"
 }
 
 
@@ -23,3 +32,5 @@ dependencies {
     testCompile 'cglib:cglib:3.2.1'
 
 }
+
+apply from: 'bintray.gradle'

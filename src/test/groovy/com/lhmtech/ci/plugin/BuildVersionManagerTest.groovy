@@ -1,6 +1,5 @@
-package com.lhmtech.build.ciplugin
+package com.lhmtech.ci.plugin
 
-import org.junit.Ignore
 import spock.lang.Specification
 
 /**
