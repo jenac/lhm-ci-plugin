@@ -6,4 +6,7 @@ node {
     stage('Build') {
         sh './gradlew clean build'
     }
+    stage('Publish') {
+            sh './gradlew -PbintrayUser=${env.BINTRAY_USER} -PbintrayApiKey=${env.BINTRAY_API_KEY} bintrayUpload'
+    }
 }
